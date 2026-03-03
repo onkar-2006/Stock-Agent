@@ -1,0 +1,195 @@
+:root {
+    --gemini-bg: #131314;
+    --gemini-panel: #1e1f20;
+    --gemini-blue: #4285f4;
+    --gemini-user-msg: #2b2b2b;
+    --text-white: #e3e3e3;
+    --text-muted: #9aa0a6;
+    --code-green: #4ade80;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.gemini-container {
+    background: var(--gemini-bg);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-white);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Chat Viewport */
+.chat-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    scrollbar-width: thin;
+    scrollbar-color: #333 transparent;
+}
+
+/* Message Wrappers */
+.msg-wrapper {
+    display: flex;
+    width: 100%;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.msg-wrapper.user {
+    justify-content: flex-end;
+}
+
+.msg-wrapper.assistant {
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.msg-content {
+    max-width: 80%;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.user .msg-content {
+    background: var(--gemini-user-msg);
+    padding: 12px 24px;
+    border-radius: 24px;
+    color: white;
+}
+
+/* Research/Tool Section */
+.research-stream {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 2px solid #333;
+    padding-left: 15px;
+}
+
+.research-card {
+    background: var(--gemini-panel);
+    border: 1px solid #3c4043;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.research-card[open] {
+    border-color: var(--gemini-blue);
+}
+
+.research-card summary {
+    padding: 12px 16px;
+    list-style: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.research-card summary::-webkit-details-marker {
+    display: none;
+}
+
+.sparkle {
+    color: var(--gemini-blue);
+    font-size: 1.1rem;
+    animation: pulse 2s infinite;
+}
+
+/* Tool Output Content */
+.raw-data {
+    margin: 0;
+    padding: 15px;
+    background: #000;
+    color: var(--code-green);
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.8rem;
+    border-top: 1px solid #3c4043;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Input Section */
+.input-container {
+    padding: 20px 15% 40px;
+    background: linear-gradient(180deg, transparent 0%, var(--gemini-bg) 30%);
+}
+
+.gemini-input-bar {
+    background: var(--gemini-panel);
+    display: flex;
+    padding: 10px 15px 10px 25px;
+    border-radius: 32px;
+    align-items: center;
+    border: 1px solid transparent;
+    transition: border 0.3s ease;
+}
+
+.gemini-input-bar:focus-within {
+    border-color: #444;
+}
+
+.gemini-input-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    outline: none;
+}
+
+.gemini-input-bar button {
+    background: var(--gemini-blue);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.gemini-input-bar button:hover {
+    transform: scale(1.05);
+}
+
+.gemini-input-bar button:disabled {
+    background: #333;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.5; transform: scale(0.95); }
+}
+
+/* Markdown Styling */
+.msg-content p { margin-top: 0; }
+.msg-content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.msg-content th, .msg-content td { border: 1px solid #444; padding: 8px; text-align: left; }
+.msg-content th { background: #333; }
