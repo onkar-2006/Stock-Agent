@@ -11,8 +11,3 @@ class ChatResponse(BaseModel):
     role: str
     content: str
     tool_calls: Optional[List[Dict[str, Any]]] = None
-
-
-
-
-

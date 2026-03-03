@@ -1,5 +1,6 @@
 from langchain_core.tools import tool
 from langchain_tavily import TavilySearch
+from langchain_community.tools.yahoo_finance_news import YahooFinanceNewsTool
 import yfinance as yf
 import pandas as pd
 
@@ -48,6 +49,7 @@ def search_web(query:str):
     return responce
   except Exception as e:
     ValueError(e)
+    
 
 
 Tools = [get_complete_financial_data, search_web]

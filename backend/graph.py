@@ -29,7 +29,7 @@ class AgentState(TypedDict):
 
 
 
-model = ChatGroq(model ="openai/gpt-oss-120b" , temperature=0.7 , max_tokens=1000, api_key = GROQ_API_KEY)
+model = ChatGroq(model ="openai/gpt-oss-120b" , temperature=0.7 , max_tokens=5000, api_key = GROQ_API_KEY)
 llm_with_tools = model.bind_tools(Tools)
 
 
