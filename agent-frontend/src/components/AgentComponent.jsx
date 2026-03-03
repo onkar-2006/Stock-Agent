@@ -1,28 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { v4 as uuidv4 } from 'uuid'; // Import uuid to generate unique IDs
+import { v4 as uuidv4 } from 'uuid'; 
 import remarkGfm from 'remark-gfm';
 import './Agent.css';
 
 const Agent = () => {
+
     const [messages, setMessages] = useState([]);
     const [currentResearch, setCurrentResearch] = useState([]);
     const [input, setInput] = useState("");
     const [isStreaming, setIsStreaming] = useState(false);
-    // Added state to store the unique thread ID for this session
+    
     const [threadId, setThreadId] = useState(""); 
     const scrollRef = useRef(null);
 
-    // Generate a unique ID once when the component first loads
+   
     useEffect(() => {
         const newThreadId = `thread_${uuidv4()}`;
         setThreadId(newThreadId);
         console.log("Session Started with Thread ID:", newThreadId);
     }, []);
 
+
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, currentResearch]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,11 +39,14 @@ const Agent = () => {
         
         let aiResponse = "";
         
+
         try {
-            const response = await fetch("http://localhost:8000/chat", {
+            
+            const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+            
+            const response = await fetch(`${API_BASE_URL}/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                // Use the dynamic threadId state here instead of "demo-thread"
                 body: JSON.stringify({ 
                     messages: [...messages, userMsg], 
                     thread_id: threadId 
@@ -142,3 +148,4 @@ const Agent = () => {
     );
 };
 export default Agent;
+

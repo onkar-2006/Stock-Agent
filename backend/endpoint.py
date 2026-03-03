@@ -8,7 +8,6 @@ from graph import agent
 
 app = FastAPI(title="Stock Analysis Agent")
 
-# Enable CORS so your React frontend can talk to this API
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

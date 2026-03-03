@@ -191,5 +191,4 @@
 /* Markdown Styling */
 .msg-content p { margin-top: 0; }
 .msg-content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
-.msg-content th, .msg-content td { border: 1px solid #444; padding: 8px; text-align: left; }
 .msg-content th { background: #333; }
