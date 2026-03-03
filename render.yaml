@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: stock-analysis-backend
+    env: docker
+    repo: https://github.com/onkar-2006/Stock-Agent
+    rootDir: backend
+    plan: free
+    region: ohio
+    envVars:
+      - key: PORT
+        value: 8000
+      - fromGroup: stock-analysis-secrets
+
+  - type: web
+    name: stock-analysis-frontend
+    env: docker
+    repo: https://github.com/onkar-2006/Stock-Agent
+    rootDir: agent-frontend
+    plan: free
+    region: ohio
+    envVars:
+      - key: VITE_API_URL
+        value: https://stock-analysis-backend.onrender.com
