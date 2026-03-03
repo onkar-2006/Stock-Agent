@@ -1,14 +1,17 @@
-
-FROM node:18-alpine AS build
+# Stage 1: Build (Using Node 20 for Vite 7 compatibility)
+FROM node:20-alpine AS build
 WORKDIR /app
+
+# Install dependencies
 COPY package*.json ./
 RUN npm install
+
+# Copy source and build
 COPY . .
 RUN npm run build
 
-
+# Stage 2: Serve with Nginx
 FROM nginx:stable-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { v4 as uuidv4 } from 'uuid'; 
 import remarkGfm from 'remark-gfm';
-import './Agent.css';
+import './agent.css';
 
 const Agent = () => {
 
@@ -43,7 +43,7 @@ const Agent = () => {
         try {
             
             const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
-            
+
             const response = await fetch(`${API_BASE_URL}/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
