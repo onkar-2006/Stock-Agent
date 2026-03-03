@@ -5,28 +5,22 @@ import remarkGfm from 'remark-gfm';
 import './agent.css';
 
 const Agent = () => {
-
     const [messages, setMessages] = useState([]);
     const [currentResearch, setCurrentResearch] = useState([]);
     const [input, setInput] = useState("");
     const [isStreaming, setIsStreaming] = useState(false);
-    
     const [threadId, setThreadId] = useState(""); 
     const scrollRef = useRef(null);
 
-   
     useEffect(() => {
         const newThreadId = `thread_${uuidv4()}`;
         setThreadId(newThreadId);
         console.log("Session Started with Thread ID:", newThreadId);
     }, []);
 
-
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, currentResearch]);
-
-
 
     const API_BASE_URL = "https://stock-analysis-backend-hwib.onrender.com";
 
@@ -41,10 +35,8 @@ const Agent = () => {
         setCurrentResearch([]); 
         
         let aiResponse = "";
-        
 
         try {
-            
             const response = await fetch(`${API_BASE_URL}/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -107,6 +99,11 @@ const Agent = () => {
 
     return (
         <div className="gemini-container">
+            {/* Added Title Header */}
+            <header className="agent-header">
+                <h1>Stock-analysis agent</h1>
+            </header>
+
             <div className="chat-area">
                 {messages.map((m, i) => (
                     <div key={i} className={`msg-wrapper ${m.role}`}>
@@ -148,5 +145,5 @@ const Agent = () => {
         </div>
     );
 };
-export default Agent;
 
+export default Agent;

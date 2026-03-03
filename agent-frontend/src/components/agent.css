@@ -192,3 +192,34 @@
 .msg-content p { margin-top: 0; }
 .msg-content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
 .msg-content th { background: #333; }
+
+
+/* Add this to your existing CSS */
+
+.agent-header {
+    padding: 15px 20px;
+    background: var(--gemini-bg);
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.agent-header h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-white);
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #4285f4, #9b72cb); /* Added a slight gradient for flair */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Ensure chat-area doesn't get hidden under the header if necessary */
+.chat-area {
+    padding-top: 20px; /* Adjusted from 40px to accommodate header */
+}
